@@ -221,7 +221,7 @@
         <div class="photo-frame">
             <img src="./img/moyouri.jpg" alt="Birthday Photo">
         </div>
-        <audio id="birthdayMusic" preload="auto">
+        <audio id="birthdayMusic" controls preload="auto">
             <source src="./audio/hb.mp3" type="audio/mpeg">
         </audio>
 
@@ -250,9 +250,12 @@
 
             const music = document.getElementById("birthdayMusic");
 
-            music.load(); // force reload
-            music.play();
-        }
+            music.currentTime = 0;
+
+            music.play()
+                .then(() => console.log("Audio playing"))
+                .catch(err => console.error("Play failed:", err));
+}
     </script>
 
 </body>
