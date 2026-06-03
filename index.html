@@ -250,12 +250,13 @@
 
             const music = document.getElementById("birthdayMusic");
 
+            music.muted = false;
             music.currentTime = 0;
 
-            music.play()
-                .then(() => console.log("Audio playing"))
-                .catch(err => console.error("Play failed:", err));
-}
+            music.play().catch(err => {
+                console.log("Audio blocked:", err);
+        });
+    }
     </script>
 
 </body>
