@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Pages */
+        .page {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Front Page */
+        #front {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            z-index: 2;
+            transition: opacity 0.6s ease;
+        }
+
+        /* Birthday Page */
+        #birthday {
+            background: linear-gradient(135deg, #d11218, #fad0c4, #fbc2eb);
+            color: white;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease;
+        }
+
+        .show {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .hide {
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+
+        /* Title */
+        .title {
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        /* Button */
+        .btn {
+            margin-top: 25px;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: white;
+            color: #2575fc;
+        }
+
+        /* Glow Text */
+        .glow {
+            animation: glow 1.8s infinite alternate;
+        }
+
+        /* Message */
+        .message {
+            margin-top: 20px;
+            font-size: 1.3rem;
+            text-align: center;
+            padding: 0 20px;
+            color: #532e2e;
+        }
+
+        /* Photo Frame */
+        .photo-frame {
+
+            width: min(260px, 75vw);
+            height: min(260px, 75vw);
+            margin: 25px 0;
+            padding: 8px;
+            border: 5px solid white;
+            border-radius: 25px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.15);
+
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+                0 0 30px rgba(255, 215, 0, 0.7);
+
+            opacity: 0;
+            transform: scale(0.3);
+        }
+
+        .photo-frame.zoom-in {
+            animation:
+                photoZoom 1.5s ease-out forwards,
+                frameGlow 2s infinite alternate 1.5s;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        /* Balloons */
+        .balloon {
+            position: absolute;
+            bottom: -80px;
+            font-size: 42px;
+            animation: float linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes photoZoom {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+
+            60% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px white;
+            }
+
+            to {
+                text-shadow: 0 0 25px white,
+                    0 0 40px gold;
+            }
+        }
+
+        @keyframes frameGlow {
+            from {
+                box-shadow:
+                    0 0 15px rgba(255, 255, 255, 0.8),
+                    0 0 30px rgba(255, 215, 0, 0.7);
+            }
+
+            to {
+                box-shadow:
+                    0 0 25px rgba(255, 255, 255, 1),
+                    0 0 50px rgba(255, 215, 0, 1);
+            }
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-120vh);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Front Page -->
+    <div id="front" class="page">
+        <h1 class="title"> Hey You </h1>
+
+        <button class="btn" onclick="openBirthday()">
+            Click Here
+        </button>
+    </div>
+
+    <!-- Birthday Page -->
+    <div id="birthday" class="page">
+
+        <h1 class="title glow">
+            🎉 Happy Birthday! 🎂
+        </h1>
+
+        <!-- Image Area -->
+        <div class="photo-frame">
+            <img src="./img/moyouri.jpg" alt="Birthday Photo">
+        </div>
+        <audio id="birthdayMusic" preload="auto">
+            <source src="./img/hb.mp3" type="audio/mpeg">
+        </audio>
+
+        <p class="message">
+            "Wishing a very happy birthday to a truly great friend; I hope today is full of good food, good people, and
+            great moments." 🐽💖
+        </p>
+
+        <!-- Balloons -->
+        <div class="balloon" style="left:10%;animation-duration:10s;">🎈</div>
+        <div class="balloon" style="left:25%;animation-duration:8s;">🎈</div>
+        <div class="balloon" style="left:40%;animation-duration:12s;">🎈</div>
+        <div class="balloon" style="left:60%;animation-duration:9s;">🎈</div>
+        <div class="balloon" style="left:75%;animation-duration:11s;">🎈</div>
+        <div class="balloon" style="left:90%;animation-duration:13s;">🎈</div>
+
+    </div>
+
+    <script>
+        function openBirthday() {
+            document.getElementById("front").classList.add("hide");
+            document.getElementById("birthday").classList.add("show");
+
+            document.querySelector(".photo-frame")
+                .classList.add("zoom-in");
+
+            document.getElementById("birthdayMusic").play();
+        }
+    </script>
+
+</body>
+
+</html>
