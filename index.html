@@ -222,12 +222,12 @@
             <img src="./img/moyouri.jpg" alt="Birthday Photo">
         </div>
         <audio id="birthdayMusic" preload="auto">
-            <source src="./img/hb.mp3" type="audio/mpeg">
+            <source src="./audio/hb.mp3" type="audio/mpeg">
         </audio>
 
         <p class="message">
             "Wishing a very happy birthday to a truly great friend; I hope today is full of good food, good people, and
-            great moments." 🐽💖
+            great moments."💖
         </p>
 
         <!-- Balloons -->
@@ -248,7 +248,10 @@
             document.querySelector(".photo-frame")
                 .classList.add("zoom-in");
 
-            document.getElementById("birthdayMusic").play();
+            const music = document.getElementById("birthdayMusic");
+
+            music.load(); // force reload
+            music.play();
         }
     </script>
 
